@@ -1,0 +1,604 @@
+<!DOCTYPE html>  
+  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>Gan HaChochma | גַּן הַחָכְמָה</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>  
+  <style>  
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }  
+
+:root {  
+  --cream:     #FAF6EE;  
+  --parchment: #F0E8D5;  
+  --gold:      #B8860B;  
+  --gold-lt:   #D4A843;  
+  --olive:     #5C6B3A;  
+  --olive-lt:  #7A8F52;  
+  --navy:      #1C2B4A;  
+  --rust:      #8B3A2A;  
+  --ink:       #2A2118;  
+  --muted:     #6B5E4E;  
+}  
+  
+html { scroll-behavior: smooth; }  
+  
+body {  
+  background-color: var(--cream);  
+  color: var(--ink);  
+  font-family: 'Lato', sans-serif;  
+  font-weight: 300;  
+  line-height: 1.7;  
+  overflow-x: hidden;  
+}  
+  
+/* ── HERO ── */  
+.hero {  
+  min-height: 100vh;  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  text-align: center;  
+  padding: 80px 24px 60px;  
+  position: relative;  
+  background:  
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,134,11,0.10) 0%, transparent 70%),  
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(92,107,58,0.08) 0%, transparent 60%),  
+    var(--cream);  
+}  
+  
+/* decorative border top */  
+.hero::before {  
+  content: '';  
+  position: absolute;  
+  top: 0; left: 0; right: 0;  
+  height: 6px;  
+  background: linear-gradient(90deg, var(--olive), var(--gold), var(--rust), var(--gold), var(--olive));  
+}  
+  
+.hebrew-title {  
+  font-family: 'Playfair Display', serif;  
+  font-style: italic;  
+  font-size: clamp(1rem, 2.5vw, 1.4rem);  
+  color: var(--gold);  
+  letter-spacing: 0.12em;  
+  margin-bottom: 12px;  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 0.2s forwards;  
+}  
+  
+.brand-name {  
+  font-family: 'Playfair Display', serif;  
+  font-size: clamp(2.8rem, 7vw, 5.5rem);  
+  font-weight: 700;  
+  color: var(--navy);  
+  line-height: 1.05;  
+  letter-spacing: -0.01em;  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 0.4s forwards;  
+}  
+  
+.brand-name span {  
+  color: var(--olive);  
+}  
+  
+.divider-ornament {  
+  margin: 28px auto;  
+  display: flex;  
+  align-items: center;  
+  gap: 14px;  
+  width: fit-content;  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 0.6s forwards;  
+}  
+  
+.divider-ornament::before,  
+.divider-ornament::after {  
+  content: '';  
+  display: block;  
+  width: 60px;  
+  height: 1px;  
+  background: linear-gradient(90deg, transparent, var(--gold));  
+}  
+  
+.divider-ornament::after {  
+  background: linear-gradient(90deg, var(--gold), transparent);  
+}  
+  
+.divider-star {  
+  color: var(--gold);  
+  font-size: 1.1rem;  
+}  
+  
+.tagline {  
+  font-family: 'Playfair Display', serif;  
+  font-style: italic;  
+  font-size: clamp(1.15rem, 2.5vw, 1.55rem);  
+  color: var(--muted);  
+  max-width: 560px;  
+  margin: 0 auto 20px;  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 0.7s forwards;  
+}  
+  
+.sub-tagline {  
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);  
+  color: var(--muted);  
+  max-width: 620px;  
+  margin: 0 auto 48px;  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 0.85s forwards;  
+}  
+  
+/* ── EMAIL FORM ── */  
+.form-wrap {  
+  opacity: 0;  
+  animation: fadeUp 0.9s ease 1s forwards;  
+  width: 100%;  
+  max-width: 500px;  
+}  
+  
+.form-group {  
+  display: flex;  
+  flex-direction: column;  
+  gap: 12px;  
+}  
+  
+.form-input {  
+  width: 100%;  
+  padding: 16px 20px;  
+  border: 1.5px solid rgba(184,134,11,0.35);  
+  border-radius: 4px;  
+  background: rgba(255,255,255,0.75);  
+  font-family: 'Lato', sans-serif;  
+  font-size: 1rem;  
+  color: var(--ink);  
+  outline: none;  
+  transition: border-color 0.25s, box-shadow 0.25s;  
+}  
+  
+.form-input::placeholder { color: #A89880; }  
+  
+.form-input:focus {  
+  border-color: var(--gold);  
+  box-shadow: 0 0 0 3px rgba(184,134,11,0.12);  
+  background: #fff;  
+}  
+  
+.form-btn {  
+  width: 100%;  
+  padding: 17px 28px;  
+  background: var(--navy);  
+  color: #fff;  
+  font-family: 'Lato', sans-serif;  
+  font-size: 1rem;  
+  font-weight: 700;  
+  letter-spacing: 0.1em;  
+  text-transform: uppercase;  
+  border: none;  
+  border-radius: 4px;  
+  cursor: pointer;  
+  transition: background 0.25s, transform 0.15s;  
+  position: relative;  
+  overflow: hidden;  
+}  
+  
+.form-btn:hover {  
+  background: var(--olive);  
+  transform: translateY(-1px);  
+}  
+  
+.form-btn:active { transform: translateY(0); }  
+  
+.form-note {  
+  font-size: 0.82rem;  
+  color: var(--muted);  
+  margin-top: 10px;  
+  text-align: center;  
+}  
+  
+/* success state */  
+.success-msg {  
+  display: none;  
+  background: rgba(92,107,58,0.1);  
+  border: 1px solid var(--olive-lt);  
+  border-radius: 4px;  
+  padding: 20px 24px;  
+  text-align: center;  
+  color: var(--olive);  
+  font-family: 'Playfair Display', serif;  
+  font-style: italic;  
+  font-size: 1.1rem;  
+}  
+  
+/* ── BELOW FOLD ── */  
+.below-fold {  
+  background: var(--parchment);  
+  padding: 80px 24px;  
+  position: relative;  
+}  
+  
+.below-fold::before {  
+  content: '';  
+  display: block;  
+  width: 1px;  
+  height: 60px;  
+  background: linear-gradient(to bottom, transparent, var(--gold));  
+  margin: 0 auto 60px;  
+}  
+  
+.section-inner {  
+  max-width: 860px;  
+  margin: 0 auto;  
+}  
+  
+.section-label {  
+  font-size: 0.78rem;  
+  font-weight: 700;  
+  letter-spacing: 0.2em;  
+  text-transform: uppercase;  
+  color: var(--gold);  
+  margin-bottom: 14px;  
+}  
+  
+.section-heading {  
+  font-family: 'Playfair Display', serif;  
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);  
+  color: var(--navy);  
+  margin-bottom: 24px;  
+  line-height: 1.25;  
+}  
+  
+.section-body {  
+  font-size: 1.05rem;  
+  color: var(--muted);  
+  max-width: 680px;  
+  margin-bottom: 48px;  
+}  
+  
+/* pillars grid */  
+.pillars {  
+  display: grid;  
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));  
+  gap: 28px;  
+  margin-top: 40px;  
+}  
+  
+.pillar {  
+  background: rgba(255,255,255,0.65);  
+  border: 1px solid rgba(184,134,11,0.2);  
+  border-radius: 6px;  
+  padding: 28px 24px;  
+  transition: transform 0.2s, box-shadow 0.2s;  
+}  
+  
+.pillar:hover {  
+  transform: translateY(-3px);  
+  box-shadow: 0 8px 24px rgba(28,43,74,0.08);  
+}  
+  
+.pillar-icon {  
+  font-size: 1.8rem;  
+  margin-bottom: 14px;  
+  display: block;  
+}  
+  
+.pillar-title {  
+  font-family: 'Playfair Display', serif;  
+  font-size: 1.15rem;  
+  color: var(--navy);  
+  margin-bottom: 8px;  
+}  
+  
+.pillar-text {  
+  font-size: 0.93rem;  
+  color: var(--muted);  
+  line-height: 1.6;  
+}  
+  
+/* who this is for */  
+.who-section {  
+  background: var(--navy);  
+  padding: 80px 24px;  
+  color: rgba(255,255,255,0.85);  
+}  
+  
+.who-inner {  
+  max-width: 860px;  
+  margin: 0 auto;  
+}  
+  
+.who-section .section-label { color: var(--gold-lt); }  
+  
+.who-section .section-heading {  
+  color: #fff;  
+  margin-bottom: 32px;  
+}  
+  
+.who-list {  
+  list-style: none;  
+  display: grid;  
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  
+  gap: 16px;  
+}  
+  
+.who-list li {  
+  display: flex;  
+  gap: 12px;  
+  align-items: flex-start;  
+  font-size: 1rem;  
+  line-height: 1.55;  
+}  
+  
+.who-list li::before {  
+  content: '✦';  
+  color: var(--gold-lt);  
+  flex-shrink: 0;  
+  margin-top: 2px;  
+  font-size: 0.85rem;  
+}  
+  
+/* bottom CTA */  
+.bottom-cta {  
+  background: var(--cream);  
+  padding: 90px 24px;  
+  text-align: center;  
+  position: relative;  
+}  
+  
+.bottom-cta .section-heading {  
+  font-family: 'Playfair Display', serif;  
+  font-size: clamp(1.5rem, 3vw, 2.2rem);  
+  color: var(--navy);  
+  margin-bottom: 12px;  
+}  
+  
+.bottom-cta .section-body {  
+  margin: 0 auto 36px;  
+}  
+  
+.bottom-cta .form-wrap {  
+  opacity: 1;  
+  animation: none;  
+  margin: 0 auto;  
+}  
+  
+/* footer */  
+footer {  
+  background: var(--ink);  
+  color: rgba(255,255,255,0.45);  
+  text-align: center;  
+  padding: 28px 24px;  
+  font-size: 0.82rem;  
+  letter-spacing: 0.05em;  
+}  
+  
+footer a {  
+  color: var(--gold-lt);  
+  text-decoration: none;  
+}  
+  
+/* animations */  
+@keyframes fadeUp {  
+  from { opacity: 0; transform: translateY(22px); }  
+  to   { opacity: 1; transform: translateY(0); }  
+}  
+  
+.scroll-reveal {  
+  opacity: 0;  
+  transform: translateY(28px);  
+  transition: opacity 0.7s ease, transform 0.7s ease;  
+}  
+  
+.scroll-reveal.visible {  
+  opacity: 1;  
+  transform: translateY(0);  
+}  
+  
+@media (max-width: 600px) {  
+  .pillars { grid-template-columns: 1fr; }  
+  .who-list { grid-template-columns: 1fr; }  
+}  
+  </style>  
+</head>  
+<body>  
+  
+<!-- ═══════════════ HERO ═══════════════ -->  
+  
+<section class="hero">  
+  <p class="hebrew-title">גַּן הַחָכְמָה</p>  
+  
+  <h1 class="brand-name">Gan Ha<span>Chochma</span></h1>  
+  
+  <div class="divider-ornament">  
+    <span class="divider-star">✦</span>  
+  </div>  
+  
+  <p class="tagline">A Garden of Wisdom.<br>A Jewish homeschool curriculum coming soon.</p>  
+  
+  <p class="sub-tagline">  
+    Academically rigorous. Jewishly grounded. Usable across the full spectrum of traditional observance —  
+    with a secular layer built for charter school families too.  
+  </p>  
+  
+  <div class="form-wrap">  
+    <div class="form-group" id="hero-form-group">  
+      <input class="form-input" type="text"  id="hero-name"  placeholder="Your first name" autocomplete="given-name"/>  
+      <input class="form-input" type="email" id="hero-email" placeholder="Your email address" autocomplete="email"/>  
+      <button class="form-btn" type="button" onclick="handleSignup('hero')">Notify Me When It Launches</button>  
+    </div>  
+    <div class="success-msg" id="hero-success">  
+      Todah rabbah! 🌿 You're on the list. We'll be in touch.  
+    </div>  
+    <p class="form-note">No spam. No pressure. Just updates on curriculum development and early access.</p>  
+  </div>  
+</section>  
+  
+<!-- ═══════════════ WHAT IS IT ═══════════════ -->  
+  
+<section class="below-fold">  
+  <div class="section-inner">  
+    <p class="section-label scroll-reveal">What We're Building</p>  
+    <h2 class="section-heading scroll-reveal">The Jewish homeschool curriculum families have been asking for.</h2>  
+    <p class="section-body scroll-reveal">  
+      Gan HaChochma is a complete, print-first homeschool curriculum that brings together serious Judaic  
+      studies and strong secular academics — designed by a curriculum and instruction professional with  
+      deep roots in both worlds. No denominational agenda. No Christian-coded framing. Just honest,  
+      thoughtful, beautiful Jewish education for your home.  
+    </p>  
+  
+<div class="pillars">  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">📜</span>  
+    <h3 class="pillar-title">Torah & Tanakh</h3>  
+    <p class="pillar-text">Parsha study, Tanakh text, Jewish values, and classical mefarshim — taught with warmth and intellectual seriousness across all grade levels.</p>  
+  </div>  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">🕍</span>  
+    <h3 class="pillar-title">Jewish History & Israel</h3>  
+    <p class="pillar-text">From Avraham to the modern State — age-appropriate, spiral-designed, and honest. Including antisemitism, Zionism, and how to talk about all of it.</p>  
+  </div>  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">🔤</span>  
+    <h3 class="pillar-title">Hebrew Language</h3>  
+    <p class="pillar-text">Modern Ivrit as a living language alongside tefillah Hebrew — starting from early childhood, building toward fluency with pride.</p>  
+  </div>  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">🔬</span>  
+    <h3 class="pillar-title">Secular Academics</h3>  
+    <p class="pillar-text">Real science, ELA, history, and more — taught through a Jewish lens where it fits naturally, with clean secular worksheets for charter school documentation.</p>  
+  </div>  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">✡️</span>  
+    <h3 class="pillar-title">Holidays & Halacha</h3>  
+    <p class="pillar-text">The Jewish calendar as a living curriculum spine. Shabbat, Yom Tov, and mitzvot presented as normative, beautiful, and alive — not as religion class.</p>  
+  </div>  
+  <div class="pillar scroll-reveal">  
+    <span class="pillar-icon">👨‍👩‍👧‍👦</span>  
+    <h3 class="pillar-title">Multi-Age Friendly</h3>  
+    <p class="pillar-text">Designed so families with children across grade bands can learn together — with differentiated tracks for Early Childhood through High School.</p>  
+  </div>  
+</div>  
+  
+  </div>  
+</section>  
+  
+<!-- ═══════════════ WHO IT'S FOR ═══════════════ -->  
+  
+<section class="who-section">  
+  <div class="who-inner">  
+    <p class="section-label scroll-reveal">Who It's For</p>  
+    <h2 class="section-heading scroll-reveal">Built for the full breadth of the traditional Jewish home.</h2>  
+    <ul class="who-list">  
+      <li class="scroll-reveal">Families across the traditional spectrum — Modern Orthodox, Conservative, Mizrachi, Sephardic, and affiliated independents</li>  
+      <li class="scroll-reveal">Homeschoolers who want Jewish life woven through their whole curriculum, not siloed into "religious school"</li>  
+      <li class="scroll-reveal">Families using public charter schools who need clean, documentable secular materials alongside their Judaic studies</li>  
+      <li class="scroll-reveal">Parents with limited Judaics background who want support teaching what they weren't taught themselves</li>  
+      <li class="scroll-reveal">Families tired of building everything from scratch — or patching together materials that weren't made for them</li>  
+      <li class="scroll-reveal">Communities and co-ops looking for a shared curriculum with a consistent Jewish voice</li>  
+    </ul>  
+  </div>  
+</section>  
+  
+<!-- ═══════════════ BOTTOM CTA ═══════════════ -->  
+  
+<section class="bottom-cta">  
+  <div class="section-inner">  
+    <h2 class="section-heading scroll-reveal">Be the first to know.</h2>  
+    <p class="section-body scroll-reveal">  
+      Gan HaChochma is in active development. Join the list to receive updates, early access opportunities,  
+      and a voice in shaping what gets built first.  
+    </p>  
+    <div class="form-wrap scroll-reveal">  
+      <div class="form-group" id="bottom-form-group">  
+        <input class="form-input" type="text"  id="bottom-name"  placeholder="Your first name" autocomplete="given-name"/>  
+        <input class="form-input" type="email" id="bottom-email" placeholder="Your email address" autocomplete="email"/>  
+        <button class="form-btn" type="button" onclick="handleSignup('bottom')">Join the Waitlist</button>  
+      </div>  
+      <div class="success-msg" id="bottom-success">  
+        Todah rabbah! 🌿 You're on the list. We'll be in touch.  
+      </div>  
+      <p class="form-note">No spam. No pressure. Just updates on curriculum development and early access.</p>  
+    </div>  
+  </div>  
+</section>  
+  
+<!-- ═══════════════ FOOTER ═══════════════ -->  
+  
+<footer>  
+  <p>© 2026 Gan HaChochma &nbsp;·&nbsp; גַּן הַחָכְמָה &nbsp;·&nbsp; Curriculum by Angelina Dunn, MS Curriculum & Instruction</p>  
+  <p style="margin-top:8px;">Questions? <a href="mailto:gancurriculum@gmail.com">gancurriculum@gmail.com</a></p>  
+</footer>  
+  
+<script>  
+  // ── scroll reveal animation ──  
+  const reveals = document.querySelectorAll('.scroll-reveal');  
+  const observer = new IntersectionObserver((entries) => {  
+    entries.forEach((e, i) => {  
+      if (e.isIntersecting) {  
+        setTimeout(() => e.target.classList.add('visible'), i * 80);  
+        observer.unobserve(e.target);  
+      }  
+    });  
+  }, { threshold: 0.12 });  
+  reveals.forEach(el => observer.observe(el));  
+  
+  // ── Kit email form handler ──  
+  async function handleSignup(location) {  
+    const nameField = document.getElementById(location + '-name');  
+    const emailField = document.getElementById(location + '-email');  
+    const formGroup = document.getElementById(location + '-form-group');  
+    const successMsg = document.getElementById(location + '-success');  
+    
+    const name = nameField.value.trim();  
+    const email = emailField.value.trim();  
+    
+    // Basic validation  
+    if (!name || !email) {  
+      alert('Please fill in both fields');  
+      return;  
+    }  
+    
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {  
+      alert('Please enter a valid email address');  
+      return;  
+    }  
+    
+    try {  
+      const response = await fetch('https://api.kit.com/v1/subscribers', {  
+        method: 'POST',  
+        headers: {  
+          'Content-Type': 'application/json',  
+        },  
+        body: JSON.stringify({  
+          api_key: 'w_eEJoMKHADE3_iCnz-WoA',  
+          email_address: email,  
+          first_name: name,  
+        })  
+      });  
+      
+      if (response.ok) {  
+        // Hide form, show success message  
+        formGroup.style.display = 'none';  
+        successMsg.style.display = 'block';  
+        
+        // Reset fields after 2 seconds  
+        setTimeout(() => {  
+          nameField.value = '';  
+          emailField.value = '';  
+        }, 500);  
+      } else {  
+        const error = await response.json();  
+        alert('Error: ' + (error.message || 'Could not subscribe. Please try again.'));  
+      }  
+    } catch (error) {  
+      console.error('Error:', error);  
+      alert('Error submitting form. Please try again.');  
+    }  
+  }  
+</script>  
+  
+</body>  
+</html>
