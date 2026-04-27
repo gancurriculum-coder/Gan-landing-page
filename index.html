@@ -8,9 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
 ```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
   --cream:     #FAF6EE;
   --parchment: #F0E8D5;
@@ -136,7 +142,8 @@ body {
 
 /* ── EMAIL FORM ── */
 .form-wrap {
-  opacity: 1;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 1.05s forwards;
   width: 100%;
   max-width: 500px;
 }
@@ -365,6 +372,7 @@ body {
   opacity: 1;
   animation: none;
   margin: 0 auto;
+  max-width: 500px;
 }
 
 /* footer */
@@ -382,12 +390,7 @@ footer a {
   text-decoration: none;
 }
 
-/* animations */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
+/* scroll reveal */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(28px);
