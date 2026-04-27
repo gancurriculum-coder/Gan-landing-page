@@ -169,8 +169,9 @@ body {
 }
 
 .form-btn {
+  display: block;
   width: 100%;
-  padding: 17px 28px;
+  padding: 18px 28px;
   background: var(--navy);
   color: #fff;
   font-family: 'Lato', sans-serif;
@@ -182,16 +183,16 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.25s, transform 0.15s;
-  position: relative;
-  overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 .form-btn:hover {
   background: var(--olive);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(28,43,74,0.18);
 }
-
-.form-btn:active { transform: translateY(0); }
 
 .form-note {
   font-size: 0.82rem;
